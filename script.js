@@ -12,7 +12,7 @@ function submitShipmentId() {
 async function getShipmentDetails(shipmentId) {
     try {
         // Fetch the JSON data from S3
-        const response = await fetch('https://shipmentcc.s3.amazonaws.com/shipments.json');
+        const response = await fetch('https://shipmentcc.s3.ap-south-1.amazonaws.com/shipments.json');
         if (!response.ok) {
             throw new Error(`Network response was not ok: ${response.statusText}`);
         }
