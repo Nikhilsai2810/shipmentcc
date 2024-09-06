@@ -12,10 +12,7 @@ function submitShipmentId() {
 async function getShipmentDetails(shipmentId) {
     try {
         // Fetch the JSON data from S3
-        const response = await fetch('https://shipmentcc.s3.ap-south-1.amazonaws.com/shipments.json');
-        if (!response.ok) {
-            throw new Error(`Network response was not ok: ${response.statusText}`);
-        }
+        const response = await fetch('https://shipmentcc.s3.ap-south-1.amazonaws.com/shipments.json');  // Replace with your S3 file URL
         const data = await response.json();
 
         // Find the shipment details based on shipmentId
@@ -30,6 +27,13 @@ async function getShipmentDetails(shipmentId) {
                 <p><strong>Carrier:</strong> ${shipment.tracking_info.carrier}</p>
                 <p><strong>Estimated Delivery:</strong> ${shipment.tracking_info.estimated_delivery}</p>
                 <p><strong>Last Location:</strong> ${shipment.tracking_info.last_location}</p>
+                
+                <h3>Customer Details</h3>
+                <p><strong>Name:</strong> ${shipment.customer.name}</p>
+                <p><strong>Address:</strong> ${shipment.customer.address}</p>
+                <p><strong>Email:</strong> ${shipment.customer.email}</p>
+                <p><strong>Phone:</strong> ${shipment.customer.phone}</p>
+                
                 <p><strong>Events:</strong></p>
                 <ul>
                     ${shipment.tracking_info.events.map(event => `<li>${event.timestamp}: ${event.status} at ${event.location}</li>`).join('')}
@@ -40,6 +44,6 @@ async function getShipmentDetails(shipmentId) {
         }
     } catch (error) {
         console.error('Error fetching shipment data:', error);
-        document.getElementById('shipmentInfo').innerHTML = `<p>Error fetching shipment data: ${error.message}</p>`;
+        document.getElementById('shipmentInfo').innerHTML = `<p>Error fetching shipment data</p>`;
     }
 }
