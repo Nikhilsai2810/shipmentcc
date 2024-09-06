@@ -4,18 +4,104 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shipment Tracking Dashboard</title>
-    <link rel="stylesheet" href="style.css"> <!-- Link to external CSS file -->
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        /* Container for the dashboard */
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Widget styles */
+        .widget {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .widget:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #00796b;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #004d40;
+            margin-bottom: 10px;
+        }
+
+        /* Input and Button Styles */
+        input[type="text"] {
+            width: calc(100% - 22px); /* Full width minus padding */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #00796b;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #004d40;
+        }
+
+        /* Shipment Details Section */
+        #shipmentDetails {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #shipmentInfo {
+            font-size: 16px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
     <h1>Shipment Tracking Dashboard</h1>
     <div class="dashboard">
         <div class="widget">
-            <h2>Shipment IDs</h2>
-            <ul>
-                <li><a href="#" onclick="getShipmentDetails('1')">Shipment 1</a></li>
-                <li><a href="#" onclick="getShipmentDetails('2')">Shipment 2</a></li>
-                <li><a href="#" onclick="getShipmentDetails('3')">Shipment 3</a></li>
-            </ul>
+            <h2>Enter Shipment ID</h2>
+            <input type="text" id="shipmentIdInput" placeholder="Enter Shipment ID">
+            <button onclick="submitShipmentId()">Get Shipment Details</button>
         </div>
         <div id="shipmentDetails" class="widget">
             <h2>Shipment Details</h2>
