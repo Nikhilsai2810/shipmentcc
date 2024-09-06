@@ -1,6 +1,6 @@
 // Function to handle form submission
 function submitShipmentId() {
-    const shipmentId = document.getElementById('shipmentIdInput').value.trim();
+    const shipmentId = document.getElementById('shipmentIdInput').value;
     if (shipmentId) {
         getShipmentDetails(shipmentId);
     } else {
@@ -12,7 +12,7 @@ function submitShipmentId() {
 async function getShipmentDetails(shipmentId) {
     try {
         // Fetch the JSON data from S3
-        const response = await fetch('s3://shipmentcc/shipments.json');  // Replace with your S3 file URL
+        const response = await fetch('https://shipmentcc.s3.amazonaws.com/shipments.json');  // Replace with your S3 file URL
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
