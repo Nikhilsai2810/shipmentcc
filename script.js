@@ -12,9 +12,9 @@ function submitShipmentId() {
 async function getShipmentDetails(shipmentId) {
     try {
         // Fetch the JSON data from S3
-        const response = await fetch('https://shipmentcc.s3.amazonaws.com/shipments.json');  // Replace with your S3 file URL
+        const response = await fetch('https://shipmentcc.s3.amazonaws.com/shipments.json');
         if (!response.ok) {
-            throw new Error('Network response was not ok');
+            throw new Error(`Network response was not ok: ${response.statusText}`);
         }
         const data = await response.json();
 
@@ -40,6 +40,6 @@ async function getShipmentDetails(shipmentId) {
         }
     } catch (error) {
         console.error('Error fetching shipment data:', error);
-        document.getElementById('shipmentInfo').innerHTML = `<p>Error fetching shipment data</p>`;
+        document.getElementById('shipmentInfo').innerHTML = `<p>Error fetching shipment data: ${error.message}</p>`;
     }
 }
